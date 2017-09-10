@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', 
+var myApp = angular.module('myApp',
   ['ngRoute', 'firebase']);
 
 myApp.run(['$rootScope', '$location', function($rootScope, $location) {
@@ -30,6 +30,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
       }//resolve
     }).
     otherwise({
-      redirectTo: '/login'
+      redirectTo: '/meetings'
     });
 }]);

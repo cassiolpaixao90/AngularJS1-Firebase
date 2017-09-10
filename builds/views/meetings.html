@@ -1,7 +1,7 @@
 <div class="card meetings cf">
 
   <div class="textintro">
-    <h1>Adicionar Encontro</h1>
+    <h1>Adicionar Reunião</h1>
     <!-- <p>{{ message }}</p> -->
 
     <form class="formgroup addmeeting cf" name="myform"
@@ -14,5 +14,15 @@
     </div>
     <button type="submit" class="btn"ng-disable="myform.$invalid">+</button>
   </form>
+  </div>
+
+  <div class="card meetings cf">
+    <h2>Suas reuniões</h2>
+    <div class="meeting" ng-repeat="(key,meeting) in meetings">
+      <button class="btn btn-delete tooltip" ng-click="deleteMeeting(key)">
+        <span>Apagar esta Reunião</span>
+      </button>
+      <span class="text"> {{meeting.name}}</span>
+    </div>
   </div>
 </div>

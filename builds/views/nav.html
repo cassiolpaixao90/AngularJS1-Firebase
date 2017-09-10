@@ -1,11 +1,13 @@
   <div class="branding"><a ng-href="#/">angularJS</a></div>
   <ul>
+    <li>
+      <a
+        ng-show="currentUser" ng-href="#/meetings">Meetings
+          <span ng-show="howManyMeetings" class="badge">{{howManyMeetings}}</span>
+        </a>
+    </li>
+
     <li><a ng-hide="currentUser" ng-href="#/login">Login</a></li>
     <li><a ng-hide="currentUser" ng-href="#/register">Registre-se</a></li>
-    
-    <div class="userinfo" ng-show="currentUser"
-			ng-controller="RegistrationController">
-			<span class="userinfo">Oi {{currentUser.firstname}}</span> <a
-				ng-href="#/login" ng-click="logout()">logout</a>
-      </div>
+
   </ul>

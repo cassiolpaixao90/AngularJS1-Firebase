@@ -1,17 +1,22 @@
- myApp.controller('MeetingController', 
-  ['$scope', 'Authentication', 
-  function($scope, Authentication) {
+myApp.controller('MeetingsController', ['$scope','$firebaseAuth', '$firebaseArray',
+      function($scope, $firebaseAuth, $firebaseArray) {
 
-  $scope.login = function() {
-    Authentication.login($scope.user);
-  };
+        var ref  = firebase.database().ref();
+        var auth  = $firebaseAuth();
 
-  $scope.logout = function() {
-    Authentication.logout();
-  };
+        auth.$onAuthStateChanged(function(authUser){
+          if(authUser){
+            var meetingsRef = ref.child('users').child(authUser.uid).child('meetings');
+            var meetingsInfo = $firebaseArray(meetingsRef);
 
-  $scope.register = function() {
-    Authentication.register($scope.user);
-  }; //register
-
-}]); //Controller
+            $scope.addMeeting = function(){
+              meetingsInfo.$add({
+                name: $scope.meetingname,
+                date: firebase.database.ServerValue.TIMESTAMP
+              }).then(function(){
+                $scope.meetingname  ='';
+              });
+            }
+          }
+        });
+}]);
